@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "員工清單";
+    var list = ViewBag.list;
+}
+<script>
+    $(document).ready(function () {
+        // 捲軸偵測距離頂部超過 50 才顯示按鈕
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 50) {
+                if ($(".back-top").hasClass("hide")) {
+                    $(".back-top").toggleClass("hide");
+                }
+            } else {
+                $(".back-top").addClass("hide");
+            }
+        });
+
+        // 點擊按鈕回頂部
+        $(".back-top").on("click", function (event) {
+            $("html, body").animate(
+                {
+                    scrollTop: 0
+                },
+                500 // 回頂部時間為 500 毫秒
+            );
+        });
+    });
+</script>
+
+
+<h2>員工清單</h2>
+<h3>共 @ViewBag.count
+    筆資料</h3>
+<input type="button" class="btn btn-success" value="新增" onclick="javascript:location.href='/Sale/Insertemp'" />
+<form action="/Sale/Select" method="post">
+    <div class="row">
+        <div class="col">
+            <h4>工號</h4>
+            <input type="text" class="form-control" name="employeeID">
+        </div>
+        <div class="col">
+            <h4>姓名</h4>
+            <input type="text" class="form-control" name="employeeName">
+        </div>
+
+        <div class="col">
+            <h4>部門編號</h4>
+            <input type="text" class="form-control" name="department">
+        </div>
+        <div class="col">
+            <input type="submit" value="查詢" class="btn btn-secondary" />
+        </div>
+    </div>
+</form>
+
+
+<table class="table">
+    <tr>
+        <th>編號</th>
+        <th>姓名</th>
+        <th>部門編號</th>
+        <th>修改</th>
+    </tr>
+
+    @foreach (employee item in list)
+    {
+        <tr>
+            <td>@item.employeeID</td>
+            <td>@item.employeeName</td>
+            <td>@item.department</td>
+            <td>@Html.ActionLink("修改", "Update", new { employeeID = item.employeeID }, new { @class = "btn btn-warning" })</td>
+            <td>@Html.ActionLink("刪除", "Delete", new { employeeID = item.employeeID }, new { @class = "btn btn-danger" })</td>
+        </tr>
+    }
+
+</table>
+<div class="back-top hide" title="回頂部">↑</div>

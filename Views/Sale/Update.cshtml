@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    employee list = ViewBag.list;
+}
+
+<form method="post" action="/Sale/UpdateInfo">
+    <div class="row">
+        <div class="col">
+            <h4>工號</h4>
+            <input readonly type="text" class="form-control" name="employeeID" value="@list.employeeID">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>姓名</h4>
+            <input type="text" class="form-control" name="employeeName" value="@list.employeeName">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>部門編號</h4>
+            <input type="text" class="form-control" name="department" value="@list.department">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="修改" class="btn btn-warning" />
+            @Html.ActionLink("取消", "Index", new { area = "" }, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</form>
+

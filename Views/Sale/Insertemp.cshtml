@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Insertemp";
+}
+<h2>新增員工資料</h2>
+<form method="post" action="/Sale/Insertemp">
+    <div class="row">
+        <div class="col">
+            <h4>工號</h4>
+            <input type="text" class="form-control" name="employeeID">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>姓名</h4>
+            <input type="text" class="form-control" name="employeeName">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>部門編號</h4>
+            <input type="text" class="form-control" name="department">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="送出" class="btn btn-info" />
+            @Html.ActionLink("取消","Index", new { area = "" }, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</form>
+
